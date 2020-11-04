@@ -10,8 +10,7 @@ Practice of MPAndroidChart library of Android
 
 ## Try 2
 ### switch orientation
-<br>
-1. prevent reconstruct when change orientation<br>
+1. prevent reconstruct when change orientation
 ```xml
 <activity 
     android:name=".MainActivity"
@@ -19,8 +18,7 @@ Practice of MPAndroidChart library of Android
 ...
 </activity>
 ```
-<br>
-2. chane orientation method <br>
+2. chane orientation method
 ```
 private fun changeScreenMode() {
     requestedOrientation =
