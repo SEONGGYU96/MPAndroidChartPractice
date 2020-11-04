@@ -9,7 +9,8 @@ Practice of MPAndroidChart library of Android
 2. But it should not be reconstruct when change orientation. Because Data can be rost. <br>
 
 ## Try 2
-### switch orientation <br>
+### switch orientation
+<br>
 1. prevent reconstruct when change orientation<br>
 ```xml
 <activity 
@@ -20,7 +21,6 @@ Practice of MPAndroidChart library of Android
 ```
 <br>
 2. chane orientation method <br>
-
 ```
 private fun changeScreenMode() {
     requestedOrientation =
