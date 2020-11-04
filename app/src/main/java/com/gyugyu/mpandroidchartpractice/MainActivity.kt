@@ -1,5 +1,6 @@
 package com.gyugyu.mpandroidchartpractice
 
+import android.content.pm.ActivityInfo
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,7 @@ import com.gyugyu.mpandroidchartpractice.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private var currentOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,5 +42,19 @@ class MainActivity : AppCompatActivity() {
 
         //set data to chart
         chart.data = data
+
+        binding.imagebuttonOrientationMain.setOnClickListener {
+            changeScreenMode()
+        }
+    }
+
+    private fun changeScreenMode() {
+        requestedOrientation =
+            if (currentOrientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            } else {
+                ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+            }
+        currentOrientation = requestedOrientation
     }
 }
