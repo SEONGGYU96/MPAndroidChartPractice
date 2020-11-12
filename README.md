@@ -33,7 +33,7 @@ private fun changeScreenMode() {
 <img src="https://user-images.githubusercontent.com/57310034/98118706-f2d49580-1eee-11eb-81c9-b873d70d60b8.gif" width="30%" height="30%"/>
 
 ## Try 3
-#### design like a ECG monitor
+### design like a ECG monitor
 
 1. chart attributes
 ```
@@ -75,3 +75,53 @@ setDrawValues(false)
 ```
 <img src="https://user-images.githubusercontent.com/57310034/98527291-3009a080-22be-11eb-8a1c-e51aaa66a69f.png" width="50%" height="50%"/>
 
+## Try 4
+### add data using button in real time
+
+1. add data
+```
+private fun addEntry(num: Double) {
+    var data: LineData? = chart.data
+    if (data == null) {
+        data = LineData()
+        chart.data = data
+    }
+
+    var set = data.getDataSetByIndex(0)
+    // set.addEntry(...); // can be called as well
+    if (set == null) {
+        set = createSet()
+        data.addDataSet(set)
+    }
+
+    data.run {
+        //add random entry
+        addEntry(Entry(set.entryCount.toFloat(), num.toFloat()), 0)
+        notifyDataChanged()
+    }
+
+    refreshChart()
+}
+```
+
+2. refesh chart
+```
+private fun refreshChart() {
+    // let the chart know it's data has changed
+    chart.run {
+        notifyDataSetChanged()
+        setVisibleXRangeMaximum(MAX)
+        setVisibleXRangeMinimum(MAX)
+        // this automatically refreshes the chart (calls invalidate())
+        moveViewToX(data.entryCount.toFloat())
+    }
+}
+```
+3. set right padding of viewport to put last vertex on center
+```
+//define maximum and minimum visible range of axis x
+private const val MAX = 50F
+...
+chart.XAxis.spaceMax = MAX / 2
+```
+<img src="https://im7.ezgif.com/tmp/ezgif-7-e6db26016a8d.gif" width="50%" height="50%"/>
